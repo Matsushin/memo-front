@@ -1,8 +1,20 @@
 <template>
   <div>
+    <Header />
     <Nuxt />
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, SetupContext } from '@vue/composition-api'
+import Header from '@/components/layouts/Header.vue'
+
+export default defineComponent({
+  components: {
+    Header,
+  },
+})
+</script>
 
 <style>
 html {

@@ -20,7 +20,9 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    '@/plugins/composition-api',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -40,8 +42,26 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxy: true,
+  },
+  proxy: {
+    '/api/': {
+      target: process.env.NUXT_ENV_API_BASE_URL || 'http://localhost',
+    },
+  },
+  basic: {
+    name: process.env.NUXT_ENV_BASIC_NAME,
+    pass: process.env.NUXT_ENV_BASIC_PASS,
+    enabled: process.env.NUXT_ENV_ENABLE_BASIC_AUTH === 'true',
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    // Safariのホットリロード無限ループ対策
+    filenames: {
+      app: ({ isDev }) => (isDev ? '[name].[hash].js' : '[chunkhash].js'),
+      chunk: ({ isDev }) => (isDev ? '[name].[hash].js' : '[chunkhash].js'),
+    },
+  },
 }
