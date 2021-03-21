@@ -32,6 +32,17 @@ const useMemo = ({ root }: SetupContext, isPc: boolean) => {
     }
   }
 
+  const createMemo = async (params: {}) => {
+    try {
+      const response = await MemoRepository.create(params)
+      state.memo = response.data
+      state.status = response.status
+    } catch (error) {
+      const { status, statusText } = error.response
+      console.log(`Error! HTTP Status: ${status} ${statusText}`)
+    }
+  }
+
   const updateMemo = async (id: number, params: {}) => {
     try {
       const response = await MemoRepository.update(id, params)
@@ -94,6 +105,7 @@ const useMemo = ({ root }: SetupContext, isPc: boolean) => {
     state,
     getMemos,
     getMemoById,
+    createMemo,
     updateMemo,
     deleteMemo,
     title,

@@ -6,6 +6,12 @@ const get = async (params: any) => {
   })
 }
 
+const create = async (params: any) => {
+  return await mainRepository.post(`/api/v1/memos`, {
+    ...params,
+  })
+}
+
 const update = async (id: number, params: any) => {
   return await mainRepository.put(`/api/v1/memos/${id}`, {
     ...params,
@@ -22,6 +28,7 @@ const deleteById = async (id: number) => {
 
 export default {
   get,
+  create,
   update,
   getById,
   deleteById,

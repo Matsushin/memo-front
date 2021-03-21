@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3>メモ一覧</h3>
+    <nuxt-link :to="`memos/new`">新規登録</nuxt-link>
     <table class="table-template-sets table-fixed no-bordered bg-colored">
       <thead>
         <tr>
