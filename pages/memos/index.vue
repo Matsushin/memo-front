@@ -6,7 +6,7 @@
         <tr>
           <th>タイトル</th>
           <th>内容</th>
-          <th class="t-operation" colspan="2">操作</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>
@@ -19,9 +19,6 @@
             <nuxt-link :to="`memos/${memo.id}`" class="button-detail">
               編集
             </nuxt-link>
-          </td>
-          <td class="t-truncate">
-            削除
           </td>
         </tr>
       </tbody>
